@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Models;
+using ApiClient.Models;
 
 namespace ApiClient
 {
@@ -21,7 +21,7 @@ namespace ApiClient
             );
         }
 
-        public async Task<Autor> CreateAutorAsync(CreateAutorRequest createAutorRequest)
+        public async Task<CreateAutorResponse> CreateAutorAsync(CreateAutorRequest createAutorRequest)
         {
             // Alternative: manual Json serialization/use PostAsync() method
             // var requestBody = new StringContent(JsonConvert.SerializeObject(createAutorRequest).ToString(), Encoding.UTF8, "application/json");
@@ -31,14 +31,14 @@ namespace ApiClient
                 createAutorRequest
             );
 
-            Autor autor = null;
+            CreateAutorResponse createAutorResponse = null;
 
             if (response.IsSuccessStatusCode)
             {
-                autor = await response.Content.ReadAsAsync<Autor>();
+                createAutorResponse = await response.Content.ReadAsAsync<CreateAutorResponse>();
             }
 
-            return autor;
+            return createAutorResponse;
         }
     }
 }

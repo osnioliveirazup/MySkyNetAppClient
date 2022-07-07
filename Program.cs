@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ApiClient;
-using Models;
+using ApiClient.Models;
 
 namespace MySkyNetAppClient
 {
@@ -26,7 +26,7 @@ namespace MySkyNetAppClient
 
             var autor = await client.CreateAutorAsync(createAutorRequest);
 
-            if (autor is Autor)
+            if (autor is CreateAutorResponse)
             {
                 Console.WriteLine($"Id: {autor.Id}");
                 Console.WriteLine($"Nome: {autor.Nome}");
