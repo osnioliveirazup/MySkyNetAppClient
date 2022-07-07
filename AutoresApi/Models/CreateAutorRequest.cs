@@ -1,13 +1,9 @@
-using System;
 using System.Text.Json.Serialization;
 
-namespace ApiClient.Models
+namespace AutoresApi.Models
 {
-    public class CreateAutorResponse
+    public class CreateAutorRequest
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-
         [JsonPropertyName("nome")]
         public string Nome { get; set; }
 
@@ -16,8 +12,5 @@ namespace ApiClient.Models
 
         [JsonPropertyName("descricao")]
         public string Descricao { get; set; }
-
-        [JsonPropertyName("instanteCriacao")]
-        public DateTime InstanteCriacao { get; set; }
     }
 }

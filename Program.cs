@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ApiClient;
-using ApiClient.Models;
+using AutoresApi.Example;
 
 namespace MySkyNetAppClient
 {
     class Program
     {
-        private static readonly AutoresApiClient client = new AutoresApiClient("https://localhost:5001/");
+        private static readonly AutoresApiClientExample _clientExample = new AutoresApiClientExample();
 
         static void Main(string[] args)
         {
@@ -17,16 +16,13 @@ namespace MySkyNetAppClient
         static async Task RunAsync()
         {
             // Create a new Autor
-            var createAutorRequest = new CreateAutorRequest
-            {
-                Nome = "Autor 1",
-                Email = "autor1@zup.com.br",
-                Descricao = "Autor número um"
-            };
+            var autor = await _clientExample.CreateAutorAsync(
+                "Autor 1",
+                "autor1@zup.com.br",
+                "Autor número um"
+            );
 
-            var autor = await client.CreateAutorAsync(createAutorRequest);
-
-            if (autor is CreateAutorResponse)
+            if (autor != null)
             {
                 Console.WriteLine($"Id: {autor.Id}");
                 Console.WriteLine($"Nome: {autor.Nome}");
