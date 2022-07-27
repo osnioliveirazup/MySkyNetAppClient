@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoresApi.Example;
+using AutoresApi.Models;
 
 namespace MySkyNetAppClient
 {
@@ -16,19 +17,17 @@ namespace MySkyNetAppClient
         static async Task RunAsync()
         {
             // Create a new Autor
-            var autor = await _clientExample.CreateAutorAsync(
-                "Autor 1",
-                "autor1@zup.com.br",
-                "Autor número um"
-            );
+            var nome = "Autor 1";
+            var email = "autor1@zup.com.br";
+            var descricao = "Autor número um";
 
-            if (autor != null)
+            if (await _clientExample.CreateAutorAsync(nome, email, descricao) is CreateAutorResponse autorResponse)
             {
-                Console.WriteLine($"Id: {autor.Id}");
-                Console.WriteLine($"Nome: {autor.Nome}");
-                Console.WriteLine($"Email: {autor.Email}");
-                Console.WriteLine($"Descricao: {autor.Descricao}");
-                Console.WriteLine($"Instante criação: {autor.InstanteCriacao}");
+                Console.WriteLine($"Id: {autorResponse.Id}");
+                Console.WriteLine($"Nome: {autorResponse.Nome}");
+                Console.WriteLine($"Email: {autorResponse.Email}");
+                Console.WriteLine($"Descricao: {autorResponse.Descricao}");
+                Console.WriteLine($"Instante criação: {autorResponse.InstanteCriacao}");
             }
             else
             {
